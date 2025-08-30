@@ -11,5 +11,15 @@ void run_dictionary_attack(const char *hash, const char *wordlist_path) {
         return;
     }
     printf("Successfully opened file at %s\n", wordlist_path);
+
+
+    char line[256];
+
+    while (fgets(line, sizeof(line), wordlist_file))
+    {
+        printf("%s", line);
+    }
+    printf("\n"); 
+
     fclose(wordlist_file);
 }
