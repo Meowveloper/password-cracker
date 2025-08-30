@@ -1,0 +1,70 @@
+{
+	"name": "CET300 devcontainer",
+	"dockerComposeFile": "./docker-compose.yml",
+	"service": "app",
+	"workspaceFolder": "/app",
+	"postCreateCommand": "echo 'ready!!'",
+	"customizations": {
+		"vscode": {
+			"settings": {
+				"workbench.colorTheme": "Tokyo Night Storm",
+				"workbench.sideBar.location": "right",
+				"files.autoSave": "onFocusChange",
+				"editor.stickyScroll.enabled": false,
+				"editor.formatOnSave": true,
+				"editor.defaultFormatter": "esbenp.prettier-vscode",
+				"prettier.useTabs": true,
+				"prettier.tabWidth": 4,
+				"prettier.printWidth": 5000,
+				"prettier.proseWrap": "never",
+				"workbench.editor.showTabs": "single",
+				"prettier.arrowParens": "avoid",
+				"prettier.htmlWhitespaceSensitivity": "css",
+				"files.exclude": {
+					"**/vendor": true
+				},
+				"search.exclude": {
+					"**/vendor": true
+				},
+				"vim.handleKeys": {
+					"<C-n>": false
+				},
+				"explorer.compactFolders": false,
+				"code-runner.runInTerminal": true,
+				"code-runner.saveFileBeforeRun": true,
+				"RainbowBrackets.depreciation-notice": false,
+				"workbench.iconTheme": "material-icon-theme",
+				"workbench.editorAssociations": {
+					"*.bpmn": "default"
+				},
+				"[markdown]": {
+					"editor.defaultFormatter": "esbenp.prettier-vscode"
+				},
+				"editor.formatOnPaste": true,
+				"editor.minimap.scale": 2,
+				"editor.minimap.size": "fit",
+				"codeviz.analyticsEnabled": true,
+				"editor.minimap.maxColumn": 50,
+				"cSpell.userWords": ["arsari", "Asari", "Aung", "AUTOINCREMENT", "iconify", "Khant", "manifoldco", "meowveloper", "Nuxt", "Postgrest", "Pressable", "supabase", "Timeslot", "timeslots"],
+				"editor.detectIndentation": false,
+				"quokka.colors": {
+					"covered": "#62b455",
+					"errorPath": "#ffa0a0",
+					"errorSource": "#fe536a",
+					"notCovered": "#cccccc",
+					"partiallyCovered": "#d2a032"
+				},
+				"editor.inlayHints.fontSize": 4,
+				"editor.inlayHints.padding": true,
+				"editor.fontFamily": "JetBrains Mono",
+				"editor.fontLigatures": true,
+				"workbench.preferredHighContrastColorTheme": "Visual Studio Dark - C++",
+				"docker.extension.enableComposeLanguageServer": false,
+				"haskell.manageHLS": "GHCup",
+				"workbench.editor.empty.hint": "hidden",
+				"editor.inlayHints.enabled": "off"
+			},
+			"extensions": ["ms-vscode.cpptools", "ms-vscode.cpptools-extension-pack", "ms-vscode.cmake-tools", "vadimcn.vscode-lldb", "vscodevim.vim", "llam4u.nerdtree", "enkia.tokyo-night", "esbenp.prettier-vscode", "usernamehw.errorlens", "formulahendry.auto-rename-tag", "vincaslt.highlight-matching-tag", "tal7aouy.rainbow-bracket", "ms-azuretools.vscode-docker", "ms-vscode.makefile-tools"]
+		}
+	}
+}

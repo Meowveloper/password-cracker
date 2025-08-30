@@ -1,0 +1,7 @@
+services:
+  app: 
+    image: gcc:15.2.0-trixie 
+    working_dir : /app 
+    volumes:
+      - ..:/app
+    command: sh -c "echo 'ready!!' && sleep infinity"
