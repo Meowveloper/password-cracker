@@ -7,6 +7,8 @@ CC = gcc
 #	- -g => Add debugging information
 CFLAGS = -Wall -g
 
+LDFLAGS = -lcrypto
+
 
 # The name of the executable to create
 TARGET = password-cracker
@@ -20,7 +22,7 @@ all: $(TARGET)
 
 # Rule to link the object files into the final executable
 $(TARGET): $(SRCS)
-	$(CC) $(CFLAGS) -o $(TARGET) $(SRCS)
+	$(CC) $(CFLAGS) -o $(TARGET) $(SRCS) $(LDFLAGS)
 
 # Target to clean up the project directory
 clean: 
