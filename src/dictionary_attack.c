@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include "dictionary_attack.h"
 
 void run_dictionary_attack(const char *hash, const char *wordlist_path) {
@@ -17,7 +18,8 @@ void run_dictionary_attack(const char *hash, const char *wordlist_path) {
 
     while (fgets(line, sizeof(line), wordlist_file))
     {
-        printf("%s", line);
+        line[strcspn(line, "\n")] = '\0';
+        printf("%s\n", line);
     }
     printf("\n"); 
 
