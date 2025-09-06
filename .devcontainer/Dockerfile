@@ -9,6 +9,7 @@ RUN apt-get update && apt-get install -y \
     curl \
     neovim \
     libssl-dev \
+    bear \
     ripgrep && \
     rm -rf /root/.config/nvim && \
     mkdir -p /root/.config/nvim

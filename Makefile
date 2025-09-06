@@ -5,7 +5,7 @@ CC = gcc
 # Compiler flags:
 #	- Wall => Turn on all warnings
 #	- -g => Add debugging information
-CFLAGS = -Wall -g
+CFLAGS = -Wall -g -Isrc/dictionary_attack -Isrc/utils
 
 LDFLAGS = -lcrypto
 
@@ -14,7 +14,7 @@ LDFLAGS = -lcrypto
 TARGET = password-cracker
 
 # The source files
-SRCS = src/main.c src/dictionary_attack.c
+SRCS = src/main.c src/dictionary_attack/dictionary_attack.c src/utils/utils.c
 
 
 # Default target, executed when just run 'make'

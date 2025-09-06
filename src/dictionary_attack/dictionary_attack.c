@@ -1,4 +1,5 @@
 #include "dictionary_attack.h"
+#include "utils.h"
 #include <openssl/md5.h>
 #include <stdio.h>
 #include <string.h>
@@ -18,6 +19,7 @@ void run_dictionary_attack(const char *hash, const char *wordlist_path) {
   char line[256];
   unsigned char md5_result[MD5_DIGEST_LENGTH];
   char hex_hash[33];
+  int found = 0;
 
   while (fgets(line, sizeof(line), wordlist_file)) {
     line[strcspn(line, "\n")] = '\0';
@@ -26,10 +28,18 @@ void run_dictionary_attack(const char *hash, const char *wordlist_path) {
     for (int i = 0; i < MD5_DIGEST_LENGTH; i++) {
       sprintf(hex_hash + (i * 2), "%02x", md5_result[i]);
     }
-    printf("%s\n", hex_hash);
+    if (is_string_equal(hex_hash, hash)) {
+      printf("success!, password found");
+      printf("hash: %s\n", hash);
+      printf("password: %s\n", line);
+      found = 1;
+      break;
+    }
   }
 
-  printf("\n");
+  if (!found) {
+    printf("password not found in the word list\n");
+  }
 
   fclose(wordlist_file);
 }

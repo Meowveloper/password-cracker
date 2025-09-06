@@ -1,1 +1,50 @@
-[]
+[
+  {
+    "arguments": [
+      "/usr/local/bin/gcc",
+      "-c",
+      "-Wall",
+      "-g",
+      "-Isrc/dictionary_attack",
+      "-Isrc/utils",
+      "-o",
+      "password-cracker",
+      "src/main.c"
+    ],
+    "directory": "/app",
+    "file": "/app/src/main.c",
+    "output": "/app/password-cracker"
+  },
+  {
+    "arguments": [
+      "/usr/local/bin/gcc",
+      "-c",
+      "-Wall",
+      "-g",
+      "-Isrc/dictionary_attack",
+      "-Isrc/utils",
+      "-o",
+      "password-cracker",
+      "src/dictionary_attack/dictionary_attack.c"
+    ],
+    "directory": "/app",
+    "file": "/app/src/dictionary_attack/dictionary_attack.c",
+    "output": "/app/password-cracker"
+  },
+  {
+    "arguments": [
+      "/usr/local/bin/gcc",
+      "-c",
+      "-Wall",
+      "-g",
+      "-Isrc/dictionary_attack",
+      "-Isrc/utils",
+      "-o",
+      "password-cracker",
+      "src/utils/utils.c"
+    ],
+    "directory": "/app",
+    "file": "/app/src/utils/utils.c",
+    "output": "/app/password-cracker"
+  }
+]
