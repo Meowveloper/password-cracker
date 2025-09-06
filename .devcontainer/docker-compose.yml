@@ -1,7 +1,15 @@
 services:
-  app: 
+  app:
     build: .
-    working_dir : /app 
+    image: password-cracker:latest
+    container_name: password-cracker
+    working_dir: /app
     volumes:
+      - ./nvim-config:/root/.config/nvim
       - ..:/app
-    command: sh -c "echo 'ready!!' && sleep infinity"
+    command: sh -c "
+        echo '-----' &&
+        echo 'Setup complete. Container is ready for development.' &&
+        echo '-----' &&
+        sleep infinity
+      "
