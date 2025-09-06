@@ -12,6 +12,7 @@ void run_dictionary_attack(const char *hash, const char *wordlist_path) {
     printf("ERROR:: could not open file at the path %s\n", wordlist_path);
     return;
   }
+
   printf("Successfully opened file at %s\n", wordlist_path);
 
   char line[256];
