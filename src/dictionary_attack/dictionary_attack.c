@@ -1,45 +1,38 @@
 #include "dictionary_attack.h"
 #include "utils.h"
-#include <openssl/md5.h>
 #include <stdio.h>
 #include <string.h>
 
 void run_dictionary_attack(const char *hash, const char *wordlist_path) {
-  printf("dictionary attack initiated!!!\n");
+    printf("dictionary attack initiated!!!\n");
 
-  FILE *wordlist_file = fopen(wordlist_path, "r");
+    FILE *wordlist_file = fopen(wordlist_path, "r");
 
-  if (wordlist_file == NULL) {
-    printf("ERROR:: could not open file at the path %s\n", wordlist_path);
-    return;
-  }
-
-  printf("Successfully opened file at %s\n", wordlist_path);
-
-  char line[256];
-  unsigned char md5_result[MD5_DIGEST_LENGTH];
-  char hex_hash[33];
-  int found = 0;
-
-  while (fgets(line, sizeof(line), wordlist_file)) {
-    line[strcspn(line, "\n")] = '\0';
-    MD5((const unsigned char *)line, strlen(line), md5_result);
-
-    for (int i = 0; i < MD5_DIGEST_LENGTH; i++) {
-      sprintf(hex_hash + (i * 2), "%02x", md5_result[i]);
+    if (wordlist_file == NULL) {
+        printf("ERROR:: could not open file at the path %s\n", wordlist_path);
+        return;
     }
-    if (is_string_equal(hex_hash, hash)) {
-      printf("success!, password found");
-      printf("hash: %s\n", hash);
-      printf("password: %s\n", line);
-      found = 1;
-      break;
+
+    printf("Successfully opened file at %s\n", wordlist_path);
+
+    char line[256];
+    int found = 0;
+
+    while (fgets(line, sizeof(line), wordlist_file)) {
+        line[strcspn(line, "\n")] = '\0';
+
+        if (hash_and_compare(line, hash)) {
+            printf("success!, password found\n");
+            printf("hash: %s\n", hash);
+            printf("password: %s\n", line);
+            found = 1;
+            break;
+        }
     }
-  }
 
-  if (!found) {
-    printf("password not found in the word list\n");
-  }
+    if (!found) {
+        printf("password not found in the word list\n");
+    }
 
-  fclose(wordlist_file);
+    fclose(wordlist_file);
 }
