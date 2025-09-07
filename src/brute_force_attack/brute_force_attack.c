@@ -5,31 +5,38 @@
 
 
 static int brute_force_attack_recursive(const char *target_hash, const char *char_set, char *prefix, int current_length, int max_length, long long *attempts) {
+	const int PROGRESS_INTERVAL = 1000;
 
-    // base case: if have a complete password candidate;
-    if(current_length == max_length) {
-        // hanh and compare it to the target hash;
-        prefix[current_length] = '\0';
-        (*attempts)++;
-        return hash_and_compare(prefix, target_hash);
-    }
+	// base case: if have a complete password candidate;
+	if(current_length == max_length) {
+		// hanh and compare it to the target hash;
+		prefix[current_length] = '\0';
+		(*attempts)++;
 
-    // recursive step:
-    // loop through each character in the character set;
-    for(int i = 0; i < strlen(char_set); i ++) {
+		if(*attempts % PROGRESS_INTERVAL == 0) {
+			printf("\rcurrent attempt: [%s]", prefix);
+			fflush(stdout);
+		}
 
-        // append the next character to the prefix;
-        prefix[current_length] = char_set[i];
+		return hash_and_compare(prefix, target_hash);
+	}
 
-        // make the recursive call for the next level;
-        if(brute_force_attack_recursive(target_hash, char_set, prefix, current_length + 1, max_length, attempts)) {
+	// recursive step:
+	// loop through each character in the character set;
+	for(int i = 0; i < strlen(char_set); i ++) {
 
-            // if the recursive call found the password, stop and return 1;
-            return 1;
-        }
-    }
+		// append the next character to the prefix;
+		prefix[current_length] = char_set[i];
 
-    return 0;
+		// make the recursive call for the next level;
+		if(brute_force_attack_recursive(target_hash, char_set, prefix, current_length + 1, max_length, attempts)) {
+
+		// if the recursive call found the password, stop and return 1;
+		return 1;
+		}
+	}
+
+	return 0;
 }
 
 long long run_brute_force_attack(const char *target_hash) {
@@ -45,7 +52,7 @@ long long run_brute_force_attack(const char *target_hash) {
     long long attempts = 0;
 
     for (int len = 1; len <= max_length; len++) {
-        printf("checking passwords of length %d...\n", len);
+        printf("\nchecking passwords of length %d...\n", len);
 
 
         if(brute_force_attack_recursive(target_hash, char_set, candidate, 0, len, &attempts)) {
@@ -56,9 +63,9 @@ long long run_brute_force_attack(const char *target_hash) {
 
 
     if(!found) {
-        printf("password not found within the speific constraints...\n");
+        printf("\npassword not found within the speific constraints...\n");
     } else {
-        printf("password found\n");
+        printf("\npassword found\n");
         printf("password: %s\n", candidate);
         printf("hash: %s\n", target_hash);
     }

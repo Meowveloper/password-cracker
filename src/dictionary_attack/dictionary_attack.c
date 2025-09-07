@@ -4,6 +4,7 @@
 #include <string.h>
 
 long long run_dictionary_attack(const char *hash, const char *wordlist_path) {
+    const int PROGRESS_INTERVAL = 10;
     printf("dictionary attack initiated!!!\n");
 
     FILE *wordlist_file = fopen(wordlist_path, "r");
@@ -23,19 +24,26 @@ long long run_dictionary_attack(const char *hash, const char *wordlist_path) {
         attempts++;
         line[strcspn(line, "\n")] = '\0';
 
+        if(attempts % PROGRESS_INTERVAL == 0) {
+            printf("\rtrying word: [%s]", line);
+            fflush(stdout);
+        }
+
         if (hash_and_compare(line, hash)) {
-            printf("success!, password found\n");
-            printf("hash: %s\n", hash);
-            printf("password: %s\n", line);
             found = 1;
             break;
         }
     }
 
+    fclose(wordlist_file);
+
     if (!found) {
-        printf("password not found in the word list\n");
+        printf("\npassword not found in the word list\n");
+    } else {
+        printf("\nsuccess!, password found\n");
+        printf("hash: %s\n", hash);
+        printf("password: %s\n", line);
     }
 
-    fclose(wordlist_file);
     return attempts;
 }
