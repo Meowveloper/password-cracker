@@ -3,22 +3,24 @@
 #include <stdio.h>
 #include <string.h>
 
-void run_dictionary_attack(const char *hash, const char *wordlist_path) {
+long long run_dictionary_attack(const char *hash, const char *wordlist_path) {
     printf("dictionary attack initiated!!!\n");
 
     FILE *wordlist_file = fopen(wordlist_path, "r");
 
     if (wordlist_file == NULL) {
         printf("ERROR:: could not open file at the path %s\n", wordlist_path);
-        return;
+        return 0;
     }
 
     printf("Successfully opened file at %s\n", wordlist_path);
 
     char line[256];
     int found = 0;
+    long long attempts = 0;
 
     while (fgets(line, sizeof(line), wordlist_file)) {
+        attempts++;
         line[strcspn(line, "\n")] = '\0';
 
         if (hash_and_compare(line, hash)) {
@@ -35,4 +37,5 @@ void run_dictionary_attack(const char *hash, const char *wordlist_path) {
     }
 
     fclose(wordlist_file);
+    return attempts;
 }
