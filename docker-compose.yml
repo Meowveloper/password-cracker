@@ -6,7 +6,7 @@ services:
     working_dir: /app
     volumes:
       - ./nvim-config:/root/.config/nvim
-      - ..:/app
+      - .:/app
     command: sh -c "
         echo '-----' &&
         echo 'Setup complete. Container is ready for development.' &&
