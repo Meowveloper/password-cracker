@@ -1,21 +1,4 @@
 services:
-
-  ide:
-    build:
-      dockerfile: Dockerfile.nvim
-    image: ide:latest
-    container_name: ide
-    working_dir: /workspace
-    volumes:
-      - ./nvim-config:/root/.config/nvim
-      - .:/workspace
-    command: sh -c "
-        echo '-----' &&
-        echo 'Setup complete. IDE is ready for development.' &&
-        echo '-----' &&
-        sleep infinity
-      "
-      
   app:
     build:
       dockerfile: Dockerfile

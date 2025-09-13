@@ -1,6 +1,0 @@
-FROM alpine:latest
-
-RUN apk add \
-    bash curl git lua nodejs npm lazygit bottom python3 go neovim ripgrep alpine-sdk --update && \
-    rm -rf /root/.config/nvim && \
-    mkdir -p /root/.config/nvim

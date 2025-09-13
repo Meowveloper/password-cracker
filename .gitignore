@@ -2,4 +2,3 @@ password-cracker
 .cache
 compile_commands.json
 rockyou.txt
-nvim-config
