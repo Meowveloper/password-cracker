@@ -1,5 +1,5 @@
-# Base image
-FROM gcc:15.2.0-trixie
+FROM gcc:15.2.0
+
 
 RUN apt-get update && apt-get install -y libssl-dev bear
 
